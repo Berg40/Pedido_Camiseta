@@ -1,10 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Camisetas</title>
+
+    <style>
+        /* Centralizar o formulário na página */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Estilizar o formulário */
+        form {
+            text-align: justify;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Espaçamento e tamanho dos campos */
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #confirmacao {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Estilizar o botão */
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo da logo */
+        .logo {
+            display: block;
+            width: 200px;
+            margin: 0 auto; /* Centraliza horizontalmente */
+            height: auto;
+
+
+        }
+
+    </style>
 </head>
 <body>
-$END$
+    <form action="{{ url_for('fazer_pedido') }}" method="post" enctype="multipart/form-data">
+        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo" class="logo">
+
+        <h1>Pedido Camiseta</h1>
+
+        {% if pedido_confirmado == 'true' %}
+            <p id="confirmacao">Pedido confirmado com sucesso!</p>
+        {% endif %}
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" name="idade" required>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Não Sei">Não Sei</option>
+        </select>
+
+        <label for="unidade">Unidade Compassfit:</label>
+        <select id="unidade" name="unidade" required>
+            <option value="Primavera">Primavera</option>
+            <option value="Farol">Farol</option>
+            <option value="Centro">Centro</option>
+        </select>
+
+        <label for="camiseta">Camiseta:</label>
+        <select id="camiseta" name="camiseta" required>
+            <option value="GG">GG Tamanho (largura=55cm, altura=78cm)</option>
+            <option value="G">G Tamanho (largura=53.5cm, altura=75cm)</option>
+            <option value="M">M Tamanho (largura=52cm, altura=73cm)</option>
+            <option value="P">P Tamanho (largura=51cm, altura=71cm)</option>
+        </select>
+
+        <button type="submit">Fazer Pedido</button>
+    </form>
 </body>
 </html>
+
+
